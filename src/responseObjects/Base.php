@@ -24,7 +24,7 @@ class Base
                             foreach ($value as $subkey => $subvalue) {
                                 if (is_array($subvalue)) {
                                     foreach ($subvalue as $subsubkey => $subsubvalue) {
-                                        $this->$field[$subkey][$subsubkey] = $this->_getValue($type, $subsubvalue, $field);
+                                        $this->$field[$subkey][$subsubkey] = $this->_getValue($type, $subsubvalue);
                                     }
                                 } else {
                                     throw new Exception('Unable to make ' . $type . ' to field ' . $field . ' for type ' . gettype($subvalue));
@@ -32,14 +32,14 @@ class Base
                             }
                         } else {
                             foreach ($value as $subkey => $subvalue) {
-                                $this->$field[$subkey] = $this->_getValue($type, $subvalue, $field);
+                                $this->$field[$subkey] = $this->_getValue($type, $subvalue);
                             }
                         }
                     } else {
                         throw new Exception('Unable to make ' . $type . ' to field ' . $field . ' for type ' . gettype($value));
                     }
                 } else {
-                    $this->$field = $this->_getValue($type, $value, $field);
+                    $this->$field = $this->_getValue($type, $value);
                 }
             }
         }
