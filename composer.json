@@ -1,6 +1,5 @@
 {
   "name": "legeartis/usearch",
-  "minimum-stability": "dev",
   "description": "Legeartis Unified Search library",
   "keywords": [
     "legeartis",
@@ -18,7 +17,7 @@
   ],
   "require": {
     "php": ">=7.1",
-    "guzzlehttp/guzzle": "~6.5",
+    "guzzlehttp/guzzle": "*",
     "ext-json": "*"
   },
   "autoload": {
