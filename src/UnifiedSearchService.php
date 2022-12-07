@@ -243,7 +243,7 @@ class UnifiedSearchService extends Service
      * @throws exceptions\NotFoundException
      * @throws exceptions\USException
      */
-    public function search(string $query, array $tags = [], array $options = [], int $skip = 0, int $limit = 0): SearchResult
+    public function search(string $query, array $tags = [], array $options = [], int $skip = 0, int $limit = 10, int $indexedAutoId = 0): SearchResult
     {
         if (!$options) {
             $options = [
@@ -262,11 +262,15 @@ class UnifiedSearchService extends Service
             'query' => $query
         ];
 
+        if ($indexedAutoId) {
+            $searchParams['indexedAutoId'] = $indexedAutoId;
+        }
+
         if ($tags) {
             $searchParams['tags'] = $tags;
         }
 
-        return $this->makeRequest(SearchResult::class, 'GET', 'search', '', null, $searchParams);
+            return $this->makeRequest(SearchResult::class, 'GET', 'search', '', null, $searchParams);
     }
 
     /**

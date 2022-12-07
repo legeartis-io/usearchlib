@@ -5,7 +5,7 @@ namespace Legeartis\UnifiedSearch\responseObjects;
 class VehicleContext extends Base
 {
     /** @var bool */
-    protected $indexed;
+    protected $indexed = false;
 
     /** @var int */
     protected $indexedAutoId;
