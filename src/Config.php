@@ -101,7 +101,9 @@ class Config
 
     private function setParams($params) {
         foreach ($params as $name => $param) {
-            $this->{'set' . $name}($param);
+            if(method_exists($this,'set' . $name)) {
+                $this->{'set' . $name}($param);
+            }
         }
     }
 }
