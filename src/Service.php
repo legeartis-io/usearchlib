@@ -119,6 +119,16 @@ class Service
             'json' => $request->getBody()
         ];
 
+        $connectionTimeout = $this->getConfig()->getConnectTimeout();
+        if (!is_null($connectionTimeout)) {
+            $options['connect_timeout'] = $connectionTimeout;
+        }
+
+        $timeout = $this->getConfig()->getTimeout();
+        if (!is_null($timeout)) {
+            $options['timeout'] = $timeout;
+        }
+
         if ($file = $request->getFilePath()) {
             unset($options['json']);
 
