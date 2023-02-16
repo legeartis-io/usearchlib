@@ -10,6 +10,10 @@ class Config
 
     private $serviceUrl = 'https://api.us.legeartis.io';
 
+    private $timeout = 10;
+
+    private $connect_timeout = 3;
+
     public function __construct($params)
     {
         $this->setParams($params);
@@ -56,6 +60,38 @@ class Config
     }
 
     /**
+     * @return mixed
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * @param mixed $timeout
+     */
+    public function setTimeout($timeout): void
+    {
+        $this->timeout = $timeout;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConnectTimeout()
+    {
+        return $this->connect_timeout;
+    }
+
+    /**
+     * @param mixed $connect_timeout
+     */
+    public function setConnectTimeout($connect_timeout): void
+    {
+        $this->connect_timeout = $connect_timeout;
+    }
+
+    /**
      * @param mixed $serviceUrl
      */
     public function setServiceUrl($serviceUrl)
@@ -65,7 +101,9 @@ class Config
 
     private function setParams($params) {
         foreach ($params as $name => $param) {
-            $this->{'set' . $name}($param);
+            if(method_exists($this,'set' . $name)) {
+                $this->{'set' . $name}($param);
+            }
         }
     }
 }
